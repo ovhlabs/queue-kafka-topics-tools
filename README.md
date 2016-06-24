@@ -16,6 +16,8 @@ Usage:
 docker run --rm ovhcom/kafka-topics-tools <args>
 ```
 
+See the [official Kafka documentation](http://kafka.apache.org/documentation.html#basic_ops).
+
 Example: 
 ```
 docker run --rm ovhcom/kafka-topics-tools --zookeeper $ZK_URL:2181/$KEY \
