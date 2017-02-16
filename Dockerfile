@@ -9,4 +9,4 @@ RUN apk --update add openjdk8-jre=8.121.13-r0 wget bash  && \
 	mv /opt/kafka_2.11-0.10.1.1 /opt/kafka && \
 	rm /tmp/kafka.tgz
 
-ENTRYPOINT ["/opt/kafka/bin/kafka-topics.sh"]
+ENV PATH /opt/kafka/bin:$PATH
