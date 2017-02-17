@@ -1,6 +1,6 @@
 [Dockerfile for Apache Kafka topics management](https://www.runabove.com/dbaas-queue.xml)
 
-The Kafka-topics-tools docker image basically contains the official Kafka binaries, but focuses on running the kafka-topics shell script as an entrypoint.
+The Kafka-topics-tools docker image basically contains the official Kafka binaries, but focuses on running the kafka topics related tools.
 Can be used with any standard Kafka cluster, and with OVH DBaaS Queue.
 
 # Installation
@@ -13,14 +13,14 @@ docker build -t ovhcom/queue-kafka-topics-tools .
 
 Usage:
 ```
-docker run --rm ovhcom/queue-kafka-topics-tools <args>
+docker run --rm ovhcom/queue-kafka-topics-tools kafka-topics.sh <args>
 ```
 
 See the [official Kafka documentation](http://kafka.apache.org/documentation.html#basic_ops).
 
 Example:
 ```
-docker run --rm ovhcom/queue-kafka-topics-tools --zookeeper $ZK_URL:2181/$KEY \
+docker run --rm ovhcom/queue-kafka-topics-tools kafka-topics.sh --zookeeper $ZK_URL:2181/$KEY \
 	--create --topic $TOPIC --replication-factor 2 --partitions 15
 ```
 

@@ -1,14 +1,14 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 MAINTAINER RunAbove <contact@runabove.com>
 
-RUN apk --update add openjdk8-jre=8.92.14-r1 wget bash  && \
+RUN apk --update add ca-certificates wget bash openjdk8-jre python2 py2-pip && \
 	rm -rf /var/cache/apk && \
-	wget -q http://www.eu.apache.org/dist/kafka/0.9.0.1/kafka_2.11-0.9.0.1.tgz -O /tmp/kafka.tgz && \
+	wget -q http://www.eu.apache.org/dist/kafka/0.10.1.1/kafka_2.11-0.10.1.1.tgz -O /tmp/kafka.tgz && \
 	mkdir -p /opt && tar -xzf /tmp/kafka.tgz -C /opt && \
-	mv /opt/kafka_2.11-0.9.0.1 /opt/kafka && \
+	mv /opt/kafka_2.11-0.10.1.1 /opt/kafka && \
 	rm /tmp/kafka.tgz && \
-	mkdir /opt/kafka/data && \
-	chmod +x /opt/kafka/bin/kafka-server-start.sh
+	pip install --upgrade pip kafka-tools
 
-ENTRYPOINT ["/opt/kafka/bin/kafka-topics.sh"]
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+ENV PATH /opt/kafka/bin:$PATH
